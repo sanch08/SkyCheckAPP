@@ -1,0 +1,90 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type WeatherResult = 
+ variant {
+   err: WeatherError;
+   ok: WeatherResponse;
+ };
+type WeatherResponse = 
+ record {
+   alerts: vec WeatherAlert;
+   current: CurrentConditions;
+   forecast: vec DailyForecast;
+   location: GeoLocation;
+ };
+type WeatherError = 
+ variant {
+   apiError: text;
+   cityNotFound;
+   parseError: text;
+ };
+type WeatherAlert = 
+ record {
+   description: text;
+   severity: text;
+   weatherCode: nat;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type TemperatureUnit = 
+ variant {
+   celsius;
+   fahrenheit;
+ };
+type SearchCityResult = 
+ variant {
+   err: WeatherError;
+   ok: vec GeoLocation;
+ };
+type GeoLocation = 
+ record {
+   country: text;
+   latitude: float64;
+   longitude: float64;
+   name: text;
+ };
+type DailyForecast = 
+ record {
+   date: text;
+   precipitationProbability: float64;
+   tempMax: float64;
+   tempMin: float64;
+   weatherCode: nat;
+   weatherDescription: text;
+   windSpeed: float64;
+ };
+type CurrentConditions = 
+ record {
+   feelsLike: float64;
+   humidity: float64;
+   pressure: float64;
+   temperature: float64;
+   unit: TemperatureUnit;
+   weatherCode: nat;
+   weatherDescription: text;
+   windDirection: float64;
+   windSpeed: float64;
+ };
+service : {
+  getWeather: (city: text, unit: TemperatureUnit) -> (WeatherResult);
+  searchCity: (city: text) -> (SearchCityResult);
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+}

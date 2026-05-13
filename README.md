@@ -1,2 +1,0 @@
-# SkyCheckAPP
-SkyCheck Weather

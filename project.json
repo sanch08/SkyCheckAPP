@@ -1,0 +1,21 @@
+{
+  "overview": "A real-time weather app where you search any city and instantly see current conditions, a 7-day forecast, wind speed, weather alerts, and key details like humidity and feels-like temperature.",
+  "features": [
+    "City search with live weather data",
+    "7-day daily forecast with high/low temperatures",
+    "Wind speed and direction",
+    "Active weather alerts banner",
+    "Current conditions: humidity, pressure, feels-like temp",
+    "Temperature unit toggle (°C / °F)"
+  ],
+  "category": "weather",
+  "tags": [
+    "weather",
+    "forecast",
+    "real-time",
+    "search",
+    "alerts",
+    "wind"
+  ],
+  "last_updated": "2026-05-13T18:35:44.819Z"
+}
